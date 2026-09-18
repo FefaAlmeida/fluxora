@@ -1,11 +1,7 @@
 import * as React from "react"
-import { cn } from "cn"
+import { cn } from "@/lib/utils"
 
-function Card({
-  className,
-  size = "default",
-  ...props
-}) {
+function Card({ className, size = "default", ...props }) {
   return (
     <div
       data-slot="card"
@@ -19,10 +15,7 @@ function Card({
   )
 }
 
-function CardHeader({
-  className,
-  ...props
-}) {
+function CardHeader({ className, ...props }) {
   return (
     <div
       data-slot="card-header"
@@ -35,15 +28,12 @@ function CardHeader({
   )
 }
 
-function CardTitle({
-  className,
-  ...props
-}) {
+function CardTitle({ className, ...props }) {
   return (
     <div
       data-slot="card-title"
       className={cn(
-        "font-heading text-base leading-snug font-medium group-data-[size=sm]/card:text-sm",
+        "font-heading text-xl leading-snug font-bold group-data-[size=sm]/card:text-lg text-foreground",
         className
       )}
       {...props}
@@ -51,23 +41,20 @@ function CardTitle({
   )
 }
 
-function CardDescription({
-  className,
-  ...props
-}) {
+function CardDescription({ className, ...props }) {
   return (
     <div
       data-slot="card-description"
-      className={cn("text-sm text-muted-foreground", className)}
+      className={cn(
+        "font-heading text-base leading-relaxed font-bold text-foreground/90",
+        className
+      )}
       {...props}
     />
   )
 }
 
-function CardAction({
-  className,
-  ...props
-}) {
+function CardAction({ className, ...props }) {
   return (
     <div
       data-slot="card-action"
@@ -80,23 +67,17 @@ function CardAction({
   )
 }
 
-function CardContent({
-  className,
-  ...props
-}) {
+function CardContent({ className, ...props }) {
   return (
     <div
       data-slot="card-content"
-      className={cn("px-(--card-spacing)", className)}
+      className={cn("px-(--card-spacing) font-heading font-bold text-foreground", className)}
       {...props}
     />
   )
 }
 
-function CardFooter({
-  className,
-  ...props
-}) {
+function CardFooter({ className, ...props }) {
   return (
     <div
       data-slot="card-footer"
