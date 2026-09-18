@@ -1,13 +1,16 @@
 "use client";
 
+import { Avatar, AvatarFallback, AvatarImage } from "@/components/ui/avatar";
+import { Badge } from "@/components/ui/badge";
 import { Button } from "@/components/ui/button";
+import { Card, CardDescription, CardTitle } from "@/components/ui/card";
 import { motion } from "motion/react";
 import {
+ Activity,
  ArrowRight,
+ MousePointerClick,
  TrendingUp,
  Zap,
- Activity,
- MousePointerClick,
 } from "lucide-react";
 
 function HeroSection({ avatarList }) {
@@ -46,7 +49,7 @@ function HeroSection({ avatarList }) {
 
       {/* CTA + Social proof */}
       <div className="mt-9 flex w-full flex-col items-start gap-6 sm:flex-row sm:items-center">
-       <Button className="group relative h-13 rounded-lg px-7 text-sm font-semibold overflow-hidden bg-foreground text-background hover:bg-foreground  cursor-pointer">
+       <Button className="group relative h-13 overflow-hidden rounded-lg bg-foreground px-7 text-sm font-semibold text-background hover:bg-foreground cursor-pointer">
         {/* Camada do gradiente que aparece no hover */}
         <span
          aria-hidden
@@ -65,12 +68,16 @@ function HeroSection({ avatarList }) {
         <div className="flex items-center gap-3">
          <div className="flex -space-x-2">
           {avatarList.slice(0, 4).map((avatar, index) => (
-           <img
-            key={index}
-            src={avatar.image}
-            alt="Cliente Fluxora"
-            className="h-8 w-8 rounded-full border-2 border-background object-cover"
-           />
+           <Avatar key={index} className="h-8 w-8 border-2 border-background">
+            <AvatarImage
+             src={avatar.image}
+             alt="Cliente Fluxora"
+             className="object-cover"
+            />
+            <AvatarFallback className="text-[10px] font-medium">
+             CF
+            </AvatarFallback>
+           </Avatar>
           ))}
          </div>
 
@@ -102,20 +109,20 @@ function HeroSection({ avatarList }) {
       {/* Glow atrás do card */}
       <div className="pointer-events-none absolute inset-x-16 top-10 -z-10 h-64 rounded-full bg-purple-500/10 blur-[100px]" />
 
-      <div className="relative overflow-hidden rounded-[30px] border border-border/70 bg-background/90 p-7 shadow-[0_28px_80px_-42px_rgba(76,29,149,0.28)] backdrop-blur-sm sm:p-9">
+      <Card className="relative gap-0 overflow-hidden rounded-[30px] border-border/70 bg-background/90 p-7 shadow-[0_28px_80px_-42px_rgba(76,29,149,0.28)] backdrop-blur-sm sm:p-9">
        {/* Glow interno */}
        <div className="pointer-events-none absolute -right-24 -top-28 h-72 w-72 rounded-full bg-purple-500/10 blur-[100px]" />
 
        {/* Header */}
        <div className="relative z-10 flex items-start justify-between gap-6">
         <div>
-         <h2 className="text-sm font-semibold text-foreground">
+         <CardTitle className="text-sm font-semibold text-foreground">
           Impacto em Performance
-         </h2>
+         </CardTitle>
 
-         <p className="mt-1 text-sm text-muted-foreground">
+         <CardDescription className="mt-1 text-sm">
           Métricas médias de projetos convertidos
-         </p>
+         </CardDescription>
         </div>
 
         <div className="shrink-0 text-right">
@@ -137,13 +144,14 @@ function HeroSection({ avatarList }) {
        <div className="relative mt-12 h-[230px] w-full">
         {/* Floating info */}
         <div className="absolute right-[3%] top-0 z-20">
-         <div className="flex items-center rounded-full border border-purple-500/15 bg-background/90 px-3 py-1.5 shadow-sm backdrop-blur-md">
-          <span className="text-xs text-muted-foreground">Conversão</span>
+         <Badge
+          variant="outline"
+          className="h-auto gap-2 rounded-full border-purple-500/15 bg-background/90 px-3 py-1.5 text-xs font-normal shadow-sm backdrop-blur-md"
+         >
+          <span className="text-muted-foreground">Conversão</span>
 
-          <span className="ml-2 text-sm font-semibold text-foreground">
-           4.8×
-          </span>
-         </div>
+          <span className="text-sm font-semibold text-foreground">4.8×</span>
+         </Badge>
         </div>
 
         <svg
@@ -310,7 +318,7 @@ function HeroSection({ avatarList }) {
          </div>
         </div>
        </div>
-      </div>
+      </Card>
      </motion.div>
     </div>
    </div>

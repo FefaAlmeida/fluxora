@@ -24,13 +24,19 @@ import { ArrowUpRight } from "lucide-react";
 const CollaborateButton = ({ className }) => (
  <Button
   className={cn(
-   "relative text-sm font-medium rounded-full h-10 p-1 ps-4 pe-12 group transition-all duration-500 hover:ps-12 hover:pe-4 w-fit overflow-hidden",
+   "relative text-sm font-medium rounded-full h-10 p-1 ps-4 pe-12 group transition-all duration-500 hover:ps-12 hover:pe-4 w-fit overflow-hidden cursor-pointer",
    className,
-   "cursor-pointer",
   )}
  >
+  {/* Camada de gradiente no hover */}
+  <span
+   aria-hidden
+   className="absolute inset-0 bg-[linear-gradient(110deg,#A78BFA_0%,#8B5CF6_30%,#7C3AED_55%,#6D28D9_80%,#5B21B6_100%)] opacity-0 transition-opacity duration-300 ease-in-out group-hover:opacity-100"
+  />
+
   <span className="relative z-10 transition-all duration-500">Faça login!</span>
-  <span className="absolute right-1 w-8 h-8 bg-background text-foreground rounded-full flex items-center justify-center transition-all duration-500 group-hover:right-[calc(100%-36px)] group-hover:rotate-45">
+
+  <span className="absolute right-1 z-10 w-8 h-8 bg-background text-foreground rounded-full flex items-center justify-center transition-all duration-500 group-hover:right-[calc(100%-36px)] group-hover:rotate-45">
    <ArrowUpRight size={16} />
   </span>
  </Button>
