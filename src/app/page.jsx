@@ -1,5 +1,7 @@
-import AboutUs from "@/components/blocks/about-us-01";
-import AgencyHeroSection from "@/components/blocks/hero-01";
+import AboutUs from "@/components/blocks/about-us";
+import AgencyHeroSection from "@/components/blocks/hero";
+import Pricing from "@/components/blocks/pricing";
+import Testimonial01 from "@/components/blocks/testimonial/testimonial";
 import { Button } from "@/components/ui/button";
 import {
   Card,
@@ -15,7 +17,8 @@ const features = [
   {
     tag: "01 · Precisão",
     title: "Controle de Estoque",
-    description: "Rastreamento em tempo real de matérias-primas e insumos da sua indústria.",
+    description:
+      "Rastreamento em tempo real de matérias-primas e insumos da sua indústria.",
     icon: Package,
     items: [
       "Entradas e saídas sincronizadas",
@@ -26,7 +29,8 @@ const features = [
   {
     tag: "02 · Visibilidade",
     title: "Alertas de Escassez",
-    description: "Identifique previamente materiais em falta e evite paradas na produção.",
+    description:
+      "Identifique previamente materiais em falta e evite paradas na produção.",
     icon: AlertTriangle,
     items: [
       "Avisos de estoque crítico",
@@ -37,7 +41,8 @@ const features = [
   {
     tag: "03 · Eficiência",
     title: "Indicadores (KPIs)",
-    description: "Visualize dados e tome decisões mais rápidas e estratégicas para sua operação.",
+    description:
+      "Visualize dados e tome decisões mais rápidas e estratégicas para sua operação.",
     icon: BarChart3,
     items: [
       "Dashboards visuais e simples",
@@ -63,7 +68,9 @@ export default function Home() {
             Tudo o que sua indústria precisa para crescer sem gargalos
           </h2>
           <p className="text-base md:text-lg text-zinc-600 font-serif font-bold">
-            Aumente a produtividade, elimine desperdícios e tenha total previsibilidade da sua cadeia de suprimentos em uma única plataforma.
+            Aumente a produtividade, elimine desperdícios e tenha total
+            previsibilidade da sua cadeia de suprimentos em uma única
+            plataforma.
           </p>
         </div>
 
@@ -99,7 +106,10 @@ export default function Home() {
                 <CardContent className="border-t border-purple-50 pt-4 my-2">
                   <ul className="space-y-3">
                     {feature.items.map((item, itemIdx) => (
-                      <li key={itemIdx} className="flex items-start gap-2.5 text-sm font-bold text-zinc-700 font-serif">
+                      <li
+                        key={itemIdx}
+                        className="flex items-start gap-2.5 text-sm font-bold text-zinc-700 font-serif"
+                      >
                         <Check className="h-5 w-5 text-purple-600 shrink-0 mt-0.5" />
                         <span>{item}</span>
                       </li>
@@ -117,6 +127,8 @@ export default function Home() {
           })}
         </div>
       </section>
+      <Pricing />
+      <Testimonial01 />
     </>
   );
 }
