@@ -1,4 +1,5 @@
-"use client";;
+"use client";
+
 import { Card, CardContent, CardDescription, CardHeader, CardTitle } from "@/components/ui/card";
 import { Badge } from "@/components/ui/badge";
 import { Button } from "@/components/ui/button";
@@ -9,44 +10,45 @@ import { motion } from "motion/react";
 
 const pricingData = [
   {
-    plan_name: "Pro",
+    plan_name: "Essencial",
     plan_descp:
-      "Launch your website faster with ready-to-use components, blocks and zero setup friction with us.",
-    plan_price: 2500,
+      "Ideal para indústrias que buscam organizar o estoque básico e eliminar erros manuais.",
+    plan_price: "2.500",
     plan_feature: [
-      "Access to all core Shadcn UI blocks",
-      "Copy-paste ready React code",
-      "Regular library updates",
-      "Commercial use license",
-      "Community support & documentation",
+      "Até 1.000 itens e insumos mapeados",
+      "Entradas e saídas sincronizadas",
+      "Relatórios básicos de movimentação",
+      "Licença para até 3 usuários",
+      "Suporte por e-mail e documentação",
     ],
     plan_recommended: false,
   },
   {
-    plan_name: "Pro Plus",
+    plan_name: "Pro",
     plan_descp:
-      "Scale with confidence using premium blocks, templates, and included strategy guidance.",
-    plan_price: 3800,
+      "A solução completa para média escala com automação de compras e inteligência de dados.",
+    plan_price: "3.800",
     plan_feature: [
-      "Everything in Pro",
-      "Premium templates & more sections",
-      "Early access to new components",
-      "Private Discord & priority support",
-      "Monthly strategy & growth sessions",
+      "Itens e insumos ilimitados",
+      "Alertas de estoque crítico em tempo real",
+      "Ponto de ressuprimento automático",
+      "Dashboards e indicadores de KPIs",
+      "Até 10 usuários com níveis de acesso",
+      "Suporte prioritário via canal dedicado",
     ],
     plan_recommended: true,
   },
   {
     plan_name: "Enterprise",
     plan_descp:
-      "Build at scale with full access, priority support, and dedicated one-on-one strategy calls.",
-    plan_price: 5000,
+      "Para grandes plantas industriais com necessidade de integração ERP customizada e SLA garantido.",
+    plan_price: "5.000",
     plan_feature: [
-      "Everything in Pro Plus",
-      "Unlimited team seats",
-      "Dedicated UI & integration support",
-      "Custom component requests",
-      "One-on-one implementation",
+      "Tudo incluído no plano Pro",
+      "Usuários e acessos ilimitados",
+      "Integração direta com ERPs (SAP, TOTVS)",
+      "Gerente de conta e implantação dedicada",
+      "SLA de atendimento garantido em contrato",
     ],
     plan_recommended: false,
   },
@@ -56,41 +58,45 @@ const Pricing = () => {
   const pricingCardVariants = {
     hidden: {
       opacity: 0,
-      x: -60,
+      y: 30,
     },
     visible: (index) => ({
       opacity: 1,
-      x: 0,
+      y: 0,
       transition: {
-        delay: index * 0.25,
+        delay: index * 0.15,
         duration: 0.6,
-        ease: "easeInOut",
+        ease: [0.21, 0.47, 0.32, 0.98],
       },
     }),
   };
 
   return (
-    <section className="bg-background py-10 lg:py-0">
-      <div className="max-w-7xl mx-auto px-4 xl:px-16 lg:py-20 sm:py-16 py-8">
-        <div className="flex flex-col gap-8 md:gap-12 items-center justify-center w-full">
-          {/* Heading */}
-          <div className="flex flex-col gap-4 justify-center items-center">
-            {/* Badge */}
-            <Badge
-              variant={"outline"}
-              className="py-1 px-3 text-sm font-normal leading-5 w-fit h-7"
-            >
-              Pricing
-            </Badge>
-            {/* Heading */}
-            <div className="max-w-3xs sm:max-w-md mx-auto text-center">
-              <h2 className="text-foreground text-3xl sm:text-5xl font-medium">
-                Pick the plan that fits your start-up
-              </h2>
-            </div>
+    <section className="bg-background py-16 sm:py-20 lg:py-24 relative overflow-hidden">
+      <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-16">
+        <div className="flex flex-col gap-12 md:gap-16 items-center justify-center w-full">
+          
+          {/* Cabeçalho */}
+          <div className="flex flex-col gap-4 justify-center items-center text-center max-w-3xl">
+            {/* Badge Padronizada */}
+            <span className="inline-flex items-center gap-2 text-xs font-semibold uppercase tracking-widest text-purple-700 bg-purple-100/80 backdrop-blur-md px-3.5 py-1.5 rounded-full border border-purple-200/80 shadow-xs">
+              <span className="h-1.5 w-1.5 rounded-full bg-purple-600 animate-pulse" />
+              Planos e Investimento
+            </span>
+
+            {/* Título Principal */}
+            <h2 className="text-3xl sm:text-4xl lg:text-5xl font-bold text-foreground tracking-tight leading-tight">
+              Escolha o plano ideal para a sua indústria
+            </h2>
+
+            {/* Subtítulo Sem Negrito */}
+            <p className="text-base sm:text-lg font-normal text-muted-foreground leading-relaxed">
+              Escale sua operação com eficiência, previsibilidade e total controle de estoque em uma única plataforma.
+            </p>
           </div>
-          {/*  */}
-          <div className="flex flex-col lg:flex-row gap-6 items-stretch h-full w-full">
+
+          {/* Cards de Preço */}
+          <div className="grid grid-cols-1 lg:grid-cols-3 gap-6 lg:gap-8 items-stretch w-full">
             {pricingData.map((plan, index) => {
               const isFeatured = plan.plan_recommended;
 
@@ -103,77 +109,87 @@ const Pricing = () => {
                   viewport={{ once: true }}
                   custom={index}
                   className={cn(
-                    "relative flex-1 flex flex-col w-full",
-                    isFeatured && "z-10 scale-102"
+                    "relative flex flex-col w-full rounded-2xl",
+                    isFeatured && "lg:-translate-y-2 z-10"
                   )}
                 >
-                  {/* GRADIENT BORDER */}
+                  {/* BORDA ANIMADA EM ROXO (CARD RECOMENDADO) */}
                   {isFeatured && (
                     <div className="absolute -inset-0.5 rounded-2xl overflow-hidden">
-                      {/* Animated conic-gradient border */}
-                      <div className="absolute -inset-full blur-xs animate-spin [animation-duration:2s] bg-conic from-blue-500 via-red-500 to-teal-400" />
-
-                      {/* Inner mask */}
+                      <div className="absolute -inset-full blur-xs animate-spin [animation-duration:3s] bg-conic from-purple-600 via-indigo-500 to-fuchsia-500" />
                       <div className="absolute inset-0.5 rounded-2xl bg-card" />
                     </div>
                   )}
 
-                  {/* CARD */}
+                  {/* ESTRUTURA DO CARD */}
                   <Card
                     className={cn(
-                      "relative flex-1 flex flex-col rounded-2xl p-8 gap-8",
-                      isFeatured ? "border-0 ring-0" : "border border-border"
+                      "relative flex-1 flex flex-col justify-between rounded-2xl p-6 sm:p-8 gap-6 border bg-white shadow-xs hover:shadow-md transition-all duration-300",
+                      isFeatured ? "border-transparent ring-0" : "border-purple-100/80"
                     )}
                   >
-                    <CardHeader className="p-0">
-                      <div className="flex flex-col gap-3 self-stretch">
+                    <div>
+                      {/* Topo do Card */}
+                      <CardHeader className="p-0 gap-3">
                         <div className="flex items-center justify-between">
-                          <CardTitle className="text-2xl font-medium text-primary">
+                          <CardTitle className="text-2xl font-bold text-foreground">
                             {plan.plan_name}
                           </CardTitle>
                           {isFeatured && (
-                            <Badge className="py-1 px-3 text-sm font-medium leading-5 w-fit h-7 flex items-center gap-1.5 [&>svg]:size-4!">
-                              <Flame size={16} /> Recommend
+                            <Badge className="py-1 px-3 text-xs font-semibold bg-purple-600 hover:bg-purple-700 text-white rounded-full flex items-center gap-1.5 shadow-xs border-none">
+                              <Flame className="w-3.5 h-3.5 fill-current" /> Recomendado
                             </Badge>
                           )}
                         </div>
-                        <CardDescription className="text-base font-normal max-w-2x">
+                        <CardDescription className="text-sm font-normal text-muted-foreground leading-relaxed">
                           {plan.plan_descp}
                         </CardDescription>
-                      </div>
-                    </CardHeader>
+                      </CardHeader>
 
-                    <CardContent className="flex flex-col flex-1 gap-8 p-0">
-                      <div className="flex items-baseline gap-1">
-                        <span className="text-foreground text-4xl sm:text-5xl font-medium">
-                          ${plan.plan_price}
+                      {/* Preço */}
+                      <div className="flex items-baseline gap-1 my-6">
+                        <span className="text-xs text-muted-foreground font-semibold uppercase tracking-wider self-start mt-2">
+                          R$
                         </span>
-                        <span className="text-muted-foreground text-base font-normal">
-                          /month
+                        <span className="text-foreground text-4xl sm:text-5xl font-bold tracking-tight">
+                          {plan.plan_price}
+                        </span>
+                        <span className="text-muted-foreground text-sm font-normal">
+                          /mês
                         </span>
                       </div>
 
-                      <Separator orientation="horizontal" />
+                      <Separator className="bg-purple-100/60 mb-6" />
 
-                      <ul className="flex flex-col gap-4 flex-1">
-                        {plan.plan_feature.map((feature, idx) => (
-                          <li
-                            key={idx}
-                            className="flex items-center gap-3 text-base font-normal text-muted-foreground"
-                          >
-                            <Check className="size-4 text-primary shrink-0" />
-                            {feature}
-                          </li>
-                        ))}
-                      </ul>
+                      {/* Lista de Features sem negrito */}
+                      <CardContent className="p-0">
+                        <ul className="flex flex-col gap-3.5">
+                          {plan.plan_feature.map((feature, idx) => (
+                            <li
+                              key={idx}
+                              className="flex items-start gap-3 text-sm font-normal text-foreground/80 leading-snug"
+                            >
+                              <Check className="w-4 h-4 text-purple-600 shrink-0 mt-0.5" />
+                              <span>{feature}</span>
+                            </li>
+                          ))}
+                        </ul>
+                      </CardContent>
+                    </div>
 
+                    {/* Botão de Ação */}
+                    <div className="pt-6 mt-auto">
                       <Button
-                        className="w-full h-12 cursor-pointer"
-                        variant={isFeatured ? "default" : "outline"}
+                        className={cn(
+                          "w-full h-11 text-sm font-semibold rounded-xl transition-all cursor-pointer shadow-xs",
+                          isFeatured
+                            ? "bg-purple-600 hover:bg-purple-700 text-white"
+                            : "bg-purple-50 hover:bg-purple-100 text-purple-700 border border-purple-100/80"
+                        )}
                       >
-                        Get started
+                        Começar com {plan.plan_name}
                       </Button>
-                    </CardContent>
+                    </div>
                   </Card>
                 </motion.div>
               );

@@ -2,6 +2,7 @@ import AboutUs from "@/components/blocks/about-us";
 import AgencyHeroSection from "@/components/blocks/hero";
 import Pricing from "@/components/blocks/pricing";
 import Testimonial01 from "@/components/blocks/testimonial/testimonial";
+import Footer from "@/components/blocks/footer/footer";
 import { Button } from "@/components/ui/button";
 import {
   Card,
@@ -58,67 +59,75 @@ export default function Home() {
       <AgencyHeroSection />
       <AboutUs />
 
-      <section className="py-16 px-4 max-w-6xl mx-auto">
+      <section className="py-20 px-4 max-w-7xl mx-auto">
         {/* Cabeçalho de Vendas / Benefícios */}
-        <div className="text-center max-w-3xl mx-auto mb-12 space-y-3">
-          <span className="inline-block text-xs font-bold uppercase tracking-widest text-purple-600 bg-purple-50 px-3 py-1 rounded-full border border-purple-100">
+        <div className="text-center max-w-3xl mx-auto mb-14 space-y-4">
+          <span className="inline-flex items-center gap-2 text-xs font-semibold uppercase tracking-widest text-purple-700 bg-purple-100/80 backdrop-blur-md px-3.5 py-1.5 rounded-full border border-purple-200/80 shadow-xs">
+            <span className="h-1.5 w-1.5 rounded-full bg-purple-600 animate-pulse" />
             Benefícios Exclusivos
           </span>
-          <h2 className="text-3xl md:text-4xl font-extrabold text-zinc-900 tracking-tight">
+
+          <h2 className="text-3xl md:text-4xl lg:text-5xl font-bold text-foreground tracking-tight leading-tight">
             Tudo o que sua indústria precisa para crescer sem gargalos
           </h2>
-          <p className="text-base md:text-lg text-zinc-600 font-serif font-bold">
+
+          <p className="text-base md:text-lg text-muted-foreground font-normal leading-relaxed pt-1">
             Aumente a produtividade, elimine desperdícios e tenha total
             previsibilidade da sua cadeia de suprimentos em uma única
             plataforma.
           </p>
         </div>
 
-        {/* Grid Lado a Lado (3 Colunas em Desktop) */}
-        <div className="grid grid-cols-1 md:grid-cols-3 gap-6">
+        {/* Grid de Cards (3 Colunas em Desktop) */}
+        <div className="grid grid-cols-1 md:grid-cols-3 gap-6 lg:gap-8">
           {features.map((feature, index) => {
             const Icon = feature.icon;
 
             return (
               <Card
                 key={index}
-                className="flex flex-col justify-between border border-purple-100 bg-white shadow-sm hover:shadow-md transition-all p-2"
+                className="flex flex-col justify-between rounded-2xl border border-purple-100/80 bg-white p-6 sm:p-8 shadow-xs hover:shadow-md transition-all duration-300"
               >
-                <CardHeader className="gap-3">
-                  <span className="text-xs font-bold text-purple-600 uppercase tracking-wider">
-                    {feature.tag}
-                  </span>
+                <div>
+                  <CardHeader className="p-0 gap-3">
+                    <span className="text-xs font-bold text-purple-600 uppercase tracking-wider">
+                      {feature.tag}
+                    </span>
 
-                  <div className="flex items-center gap-3">
-                    <div className="flex h-12 w-12 shrink-0 items-center justify-center rounded-xl bg-purple-600 text-white shadow-sm">
-                      <Icon className="h-6 w-6" />
+                    <div className="flex items-center gap-3 pt-1">
+                      <div className="flex h-11 w-11 shrink-0 items-center justify-center rounded-xl bg-purple-600 text-white shadow-xs">
+                        <Icon className="h-5 w-5" />
+                      </div>
+                      <CardTitle className="text-xl font-bold text-foreground leading-tight">
+                        {feature.title}
+                      </CardTitle>
                     </div>
-                    <CardTitle className="text-xl font-bold text-zinc-900 leading-tight">
-                      {feature.title}
-                    </CardTitle>
-                  </div>
 
-                  <CardDescription className="text-sm text-zinc-600 leading-relaxed">
-                    {feature.description}
-                  </CardDescription>
-                </CardHeader>
+                    <CardDescription className="text-sm font-normal text-muted-foreground leading-relaxed pt-1">
+                      {feature.description}
+                    </CardDescription>
+                  </CardHeader>
 
-                <CardContent className="border-t border-purple-50 pt-4 my-2">
-                  <ul className="space-y-3">
-                    {feature.items.map((item, itemIdx) => (
-                      <li
-                        key={itemIdx}
-                        className="flex items-start gap-2.5 text-sm font-bold text-zinc-700 font-serif"
-                      >
-                        <Check className="h-5 w-5 text-purple-600 shrink-0 mt-0.5" />
-                        <span>{item}</span>
-                      </li>
-                    ))}
-                  </ul>
-                </CardContent>
+                  {/* Divisória sutil */}
+                  <div className="h-px w-full bg-purple-100/60 my-5" />
 
-                <CardFooter className="bg-transparent border-t-0 pt-0">
-                  <Button className="w-full bg-purple-100 hover:bg-purple-200 text-purple-700 font-semibold text-sm h-10 rounded-xl border-none shadow-none">
+                  <CardContent className="p-0">
+                    <ul className="space-y-3">
+                      {feature.items.map((item, itemIdx) => (
+                        <li
+                          key={itemIdx}
+                          className="flex items-center gap-2.5 text-sm font-normal text-foreground/80"
+                        >
+                          <Check className="h-4 w-4 text-purple-600 shrink-0" />
+                          <span>{item}</span>
+                        </li>
+                      ))}
+                    </ul>
+                  </CardContent>
+                </div>
+
+                <CardFooter className="p-0 pt-6 mt-auto">
+                  <Button className="w-full bg-purple-50 hover:bg-purple-100 text-purple-700 font-semibold text-sm h-11 rounded-xl border border-purple-100/80 shadow-none transition-colors">
                     Explorar Recurso
                   </Button>
                 </CardFooter>
@@ -127,8 +136,10 @@ export default function Home() {
           })}
         </div>
       </section>
+
       <Pricing />
       <Testimonial01 />
+      <Footer/>
     </>
   );
 }
